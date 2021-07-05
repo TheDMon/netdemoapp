@@ -30,12 +30,14 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     
-- task: CopyFiles@2
-  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+- task: MSBuild@1
+displayName: 'Publish netdemoapp'
   inputs:
-    SourceFolder: '$(system.defaultworkingdirectory)'
-    Contents: '**\bin\$(BuildConfiguration)\**'
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    solution: '**/netdemoapp.csproj'
+    platform: 'any CPU'
+    configuration: 'Release'
+    msbuildArguments: '/t:Publish /p:outdir=$(build.artifactstagingdirectory)'
+
 
 - task: PublishBuildArtifacts@1
   inputs:
