@@ -31,7 +31,6 @@ steps:
     configuration: '$(buildConfiguration)'
     
 - task: MSBuild@1
-displayName: 'Publish netdemoapp'
   inputs:
     solution: '**/netdemoapp.csproj'
     platform: 'any CPU'
